@@ -33,12 +33,14 @@
 
 <script>
     (() => {
+        const baseUrl = "http://localhost:8080";
+
         const button = document.getElementById('shorten-btn');
 
         const postShortenUrl = () => {
             const originInput = document.getElementById('origin-input').value;
 
-            fetch("http://localhost:8080/url-shortening", {
+            fetch(`${baseUrl}/url-shortening`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -50,7 +52,7 @@
                 return response.json();
             }).then((data) => {
                 if (data.shorteningPath) {
-                    const shorteningUrl = `http://localhost:8080/${data.shorteningPath}`;
+                    const shorteningUrl = `${baseUrl}/${data.shorteningPath}`;
 
                     const html = `<a class="input-group mb-3" href="${shorteningUrl}">${shorteningUrl}</a>`;
 
